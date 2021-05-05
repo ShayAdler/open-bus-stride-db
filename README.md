@@ -94,3 +94,7 @@ Build and run on the local DB:
 docker build -t open_bus_stride_db . &&\
 docker run --rm --network host -e SQLALCHEMY_URL open_bus_stride_db
 ```
+
+## Deployment
+
+Every push to master causes the migrations to run on the production DB
