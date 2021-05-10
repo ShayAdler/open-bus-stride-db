@@ -1,6 +1,6 @@
 from .base import Base
 
-import sqlalchemy
+import sqlalchemy.orm
 
 
 class Stop(Base):
@@ -14,3 +14,4 @@ class Stop(Base):
     name = sqlalchemy.Column(sqlalchemy.String)
     city = sqlalchemy.Column(sqlalchemy.String)
     is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean)
+    route_stops = sqlalchemy.orm.relationship('RouteStop', back_populates='stop')

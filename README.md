@@ -68,21 +68,6 @@ python
 
 See [Alembic](https://alembic.sqlalchemy.org/) and [SQLAlchemy](https://docs.sqlalchemy.org/en/14/orm/) docs for more details
 
-## Tests
-
-Follow all the steps for local development
-
-Install test requirements
-
-```
-pip install -r tests/requirements.txt
-```
-
-Run tests
-
-```
-pytest
-```
 
 ## Using the Docker image
 

@@ -1,6 +1,6 @@
 from .base import Base
 
-import sqlalchemy
+import sqlalchemy.orm
 
 
 class Route(Base):
@@ -19,3 +19,5 @@ class Route(Base):
     gtfs_agency_name = sqlalchemy.Column(sqlalchemy.String)
     gtfs_route_type = sqlalchemy.Column(sqlalchemy.String)
     is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean)
+    route_stops = sqlalchemy.orm.relationship('RouteStop', back_populates='route')
+    rides = sqlalchemy.orm.relationship('Ride', back_populates='route')

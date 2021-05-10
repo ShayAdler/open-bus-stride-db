@@ -22,7 +22,7 @@ jobs:
         docker push "${DOCKER_APP_IMAGE_NAME}:${GITHUB_SHA}" &&\
         docker run -e POSTGRES_PASSWORD=123456 -p 5432:5432 -v `pwd`/.data/db:/var/lib/postgresql/data -d postgres:13 &&\
         sleep 5 &&\
-        docker run --network host -e SQLALCHEMY_URL=postgresql://postgres:123456@localhost -v `pwd`:/srv --entrypoint bash app -c "alembic upgrade head && pip install -r tests/requirements.txt && pytest" &&\
+        docker run --network host -e SQLALCHEMY_URL=postgresql://postgres:123456@localhost app &&\
         if [ "${GITHUB_REF}" == "refs/heads/main" ]; then
           docker tag app "${DOCKER_APP_IMAGE_NAME}:latest" &&\
           docker push "${DOCKER_APP_IMAGE_NAME}:latest" &&\
