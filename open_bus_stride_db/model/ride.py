@@ -6,12 +6,12 @@ from .base import Base
 class Ride(Base):
     __tablename__ = 'ride'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('route.id'))
+    route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('route.id'), index=True)
     route = sqlalchemy.orm.relationship('Route', back_populates='rides')
-    journey_ref = sqlalchemy.Column(sqlalchemy.String)
-    scheduled_start_time = sqlalchemy.Column(sqlalchemy.DateTime)
-    vehicle_ref = sqlalchemy.Column(sqlalchemy.String)
-    is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean)
+    journey_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
+    scheduled_start_time = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
+    vehicle_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
+    is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean, index=True)
     # direction
     # planned_start_time
     # planned_end_time
