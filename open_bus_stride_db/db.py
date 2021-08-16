@@ -11,12 +11,16 @@ _sessionmaker = sessionmaker(bind=engine, future=True)
 
 
 @contextmanager
-def get_session() -> ContextManager[Session]:
-    session: Session = _sessionmaker()
-    try:
+def get_session(session=None) -> ContextManager[Session]:
+    if session:
+        # this supports a use-case for functions to work with or without an existing session
         yield session
-    finally:
-        session.close()
+    else:
+        session: Session = _sessionmaker()
+        try:
+            yield session
+        finally:
+            session.close()
 
 
 def session_decorator(func):
