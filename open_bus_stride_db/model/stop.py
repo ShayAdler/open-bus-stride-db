@@ -15,3 +15,4 @@ class Stop(Base):
     city = sqlalchemy.Column(sqlalchemy.String)
     is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean, index=True)
     route_stops = sqlalchemy.orm.relationship('RouteStop', back_populates='stop')
+    ride_stops = sqlalchemy.orm.relationship('RideStop', back_populates='stop')

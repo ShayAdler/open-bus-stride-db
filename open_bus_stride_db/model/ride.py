@@ -24,3 +24,4 @@ class Ride(Base):
     # percent_passed_planned_route_stops
     # is_valid_ride
     vehicle_locations = sqlalchemy.orm.relationship('VehicleLocation', back_populates='ride')
+    ride_stops = sqlalchemy.orm.relationship('RideStop', back_populates='ride')
