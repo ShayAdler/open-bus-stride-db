@@ -12,4 +12,3 @@ class RouteStop(Base):
     route = sqlalchemy.orm.relationship('Route', back_populates='route_stops')
     order = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean, index=True)
-    vehicle_locations = sqlalchemy.orm.relationship('VehicleLocation', back_populates='route_stop')
