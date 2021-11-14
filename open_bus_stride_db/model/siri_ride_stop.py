@@ -5,6 +5,13 @@ import sqlalchemy.orm
 
 class SiriRideStop(Base):
     __tablename__ = 'siri_ride_stop'
+    __table_args__ = (
+        sqlalchemy.Index(
+            'idx_ride_stop_order',
+            'siri_ride_id', 'siri_stop_id', 'order',
+            unique=True
+        ),
+    )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     siri_stop_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_stop.id'), index=True)
     siri_stop = sqlalchemy.orm.relationship('SiriStop', back_populates='siri_ride_stops')

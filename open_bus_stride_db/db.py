@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, Session
 
 
 engine = create_engine(os.environ.get('SQLALCHEMY_URL', 'postgresql://postgres:123456@localhost'), future=True)
-_sessionmaker = sessionmaker(bind=engine, future=True)
+_sessionmaker = sessionmaker(bind=engine, future=True, autoflush=False, autocommit=False)
 
 
 @contextmanager

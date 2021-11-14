@@ -15,7 +15,7 @@ class SiriSnapshotEtlStatusEnum(enum.Enum):
 class SiriSnapshot(Base):
     __tablename__ = 'siri_snapshot'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    snapshot_id = sqlalchemy.Column(sqlalchemy.String, index=True)
+    snapshot_id = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True)
     etl_status = sqlalchemy.Column(sqlalchemy.Enum(SiriSnapshotEtlStatusEnum))
     etl_start_time = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
     etl_end_time = sqlalchemy.Column(sqlalchemy.DateTime)
@@ -27,3 +27,5 @@ class SiriSnapshot(Base):
     num_added_siri_ride_stops = sqlalchemy.Column(sqlalchemy.Integer)
     num_added_siri_routes = sqlalchemy.Column(sqlalchemy.Integer)
     num_added_siri_stops = sqlalchemy.Column(sqlalchemy.Integer)
+    last_heartbeat = sqlalchemy.Column(sqlalchemy.DateTime)
+    created_by = sqlalchemy.Column(sqlalchemy.String)
