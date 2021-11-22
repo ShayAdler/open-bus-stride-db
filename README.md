@@ -46,10 +46,10 @@ export SQLALCHEMY_URL=postgresql://postgres:123456@localhost
 
 ### Use
 
-Start a Postgresql DB
+Start a Postgresql DB by running the following from `constru.pipelines` repository:
 
 ```
-docker run --name stride-db -e POSTGRES_PASSWORD=123456 -p 5432:5432 -v `pwd`/.data/db:/var/lib/postgresql/data -d postgres:13
+docker-compose up -d stride-db
 ```
 
 ### Update DB to latest migration
@@ -84,11 +84,48 @@ See [Alembic](https://alembic.sqlalchemy.org/) and [SQLAlchemy](https://docs.sql
 
 ### Using the Docker image
 
-The Docker image is used to run DB migrations
+The Docker image is used to initialize the DB
 
-Build and run on the local DB:
+Run DB migrations:
 
 ```
 docker build -t open_bus_stride_db . &&\
 docker run --rm --network host -e SQLALCHEMY_URL open_bus_stride_db
 ```
+
+Restore DB from local production backup (Make sure DB is empty beforehand):
+
+```
+docker build -t open_bus_stride_db . &&\
+docker run --rm --network host \
+    -e PGPASSWORD=123456 \
+    -e HOSTNAME=localhost \
+    -e USER=postgres \
+    -e DB=postgres \
+    -e DB_RESTORE_FILENAME=/mnt/stride_db.sql \
+    -v `pwd`/.data/backup:/mnt \
+    open_bus_stride_db
+```
+
+### Using the backup Docker image
+
+The backup Docker image is used to create a DB backup which provides developers with a 
+copy of the DB for local developmnet.
+
+Build the DB backup image and create a local backup:
+
+```
+docker build -t open_bus_stride_db_backup backup &&\
+docker run \
+    -e PGPASSWORD=123456 \
+    -e HOSTNAME=localhost \
+    -e USER=postgres \
+    -e DB=postgres \
+    -e SCHEMA=public \
+    -e FILENAME=/mnt/stride_db.sql.gz \
+    -v `pwd`/.data/backup:/mnt \
+    --network host \
+    open_bus_stride_db_backup
+```
+
+Backup file is available at .data/backup/stride_db.sql.gz
