@@ -107,6 +107,20 @@ docker run --rm --network host \
     open_bus_stride_db
 ```
 
+Restore DB from remote production backup (Make sure DB is empty beforehand):
+
+```
+docker build -t open_bus_stride_db . &&\
+docker run --rm --network host \
+    -e PGPASSWORD=123456 \
+    -e HOSTNAME=localhost \
+    -e USER=postgres \
+    -e DB=postgres \
+    -e DB_RESTORE_URL_HTTPAUTH=siri_request_user:siri_requester_password \
+    -v `pwd`/.data/backup:/mnt \
+    open_bus_stride_db
+```
+
 ### Using the backup Docker image
 
 The backup Docker image is used to create a DB backup which provides developers with a 
