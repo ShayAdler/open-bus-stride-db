@@ -14,7 +14,7 @@ if [ "${DB_RESTORE_FILENAME}" != "" ]; then
     echo DB already restored, running migrations
     exec alembic upgrade head
   fi
-elif [ "${DB_RESTORE_URL_HTTPAUTH}" != "" ]; then
+elif [ "${DB_RESTORE_FROM_URL}" == "yes" ]; then
   echo attempting DB restore from URL, checking if DB already contains data &&\
   if ! psql -h $HOSTNAME -U $USER -d $DB -qtc "select 1;"; then
     echo DB is not ready
@@ -22,8 +22,7 @@ elif [ "${DB_RESTORE_URL_HTTPAUTH}" != "" ]; then
   elif ! psql -h $HOSTNAME -U $USER -d $DB -qtc "select version_num from alembic_version;"; then
     echo restoring DB from URL &&\
     cd `mktemp -d` &&\
-    curl -u $DB_RESTORE_URL_HTTPAUTH \
-      https://open-bus-siri-requester.hasadna.org.il/stride_db_backup/stride_db.sql.gz \
+    curl https://open-bus-siri-requester.hasadna.org.il/stride_db_backup/stride_db.sql.gz \
       -o stride_db.sql.gz &&\
     gzip -cd stride_db.sql.gz > stride_db.sql &&\
     psql -h $HOSTNAME -U $USER -d $DB -f stride_db.sql

@@ -118,7 +118,7 @@ docker run --rm --network host \
     -e HOSTNAME=localhost \
     -e USER=postgres \
     -e DB=postgres \
-    -e DB_RESTORE_URL_HTTPAUTH=siri_request_user:siri_requester_password \
+    -e DB_RESTORE_FROM_URL=yes \
     -v `pwd`/.data/backup:/mnt \
     open_bus_stride_db
 ```
