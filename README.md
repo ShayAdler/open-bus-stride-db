@@ -5,6 +5,8 @@ Open Bus Stride database schema, migrations and related code
 * [Alembic](https://alembic.sqlalchemy.org/) is used for migrations
 * [SQLAlchemy](https://docs.sqlalchemy.org/en/14/orm/) is used for the ORM
 
+See [our contributing docs](https://github.com/hasadna/open-bus-pipelines/blob/main/CONTRIBUTING.md) if you want to suggest changes to this repository.
+
 ## Development using the Docker Compose environment
 
 This is the easiest option to start development, follow these instructions: https://github.com/hasadna/open-bus-pipelines/blob/main/README.md#stride-db
