@@ -19,3 +19,10 @@ class SiriRide(Base):
     scheduled_start_time = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
     vehicle_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
     siri_ride_stops = sqlalchemy.orm.relationship('SiriRideStop', back_populates='siri_ride')
+
+    # added by open-bus-stride-etl siri add-ride-duration-minutes
+    updated_first_last_vehicle_locations = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
+    first_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
+    last_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
+    updated_duration_minutes = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
+    duration_minutes = sqlalchemy.Column(sqlalchemy.Integer, index=True)
