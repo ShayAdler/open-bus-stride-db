@@ -1,6 +1,6 @@
 import sqlalchemy.orm
 
-from .base import Base
+from .base import Base, DateTimeWithTimeZone
 
 
 class SiriRide(Base):
@@ -16,13 +16,13 @@ class SiriRide(Base):
     siri_route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_route.id'), index=True)
     siri_route = sqlalchemy.orm.relationship('SiriRoute', back_populates='siri_rides')
     journey_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
-    scheduled_start_time = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
+    scheduled_start_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     vehicle_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
     siri_ride_stops = sqlalchemy.orm.relationship('SiriRideStop', back_populates='siri_ride')
 
     # added by open-bus-stride-etl siri add-ride-duration-minutes
-    updated_first_last_vehicle_locations = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
+    updated_first_last_vehicle_locations = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     first_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
     last_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
-    updated_duration_minutes = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
+    updated_duration_minutes = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     duration_minutes = sqlalchemy.Column(sqlalchemy.Integer, index=True)
