@@ -1,5 +1,8 @@
+import datetime
+
 from sqlalchemy import MetaData
 from sqlalchemy.orm import declarative_base
+from sqlalchemy.types import TypeDecorator, DateTime as _DateTime
 
 
 meta = MetaData(
@@ -12,3 +15,20 @@ meta = MetaData(
     }
 )
 Base = declarative_base(metadata=meta)
+
+
+class DateTimeWithTimeZone(TypeDecorator):
+    impl = _DateTime
+    cache_ok = True
+
+    def process_bind_param(self, value, dialect):
+        if value is not None:
+            if not value.tzinfo:
+                raise TypeError("tzinfo is required")
+            value = value.astimezone(datetime.timezone.utc).replace(tzinfo=None)
+        return value
+
+    def process_result_value(self, value, dialect):
+        if value is not None:
+            value = value.replace(tzinfo=datetime.timezone.utc)
+        return value

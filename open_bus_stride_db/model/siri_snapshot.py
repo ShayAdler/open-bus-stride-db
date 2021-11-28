@@ -1,6 +1,6 @@
 import enum
 
-from .base import Base
+from .base import Base, DateTimeWithTimeZone
 
 import sqlalchemy.orm
 
@@ -17,8 +17,8 @@ class SiriSnapshot(Base):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     snapshot_id = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True)
     etl_status = sqlalchemy.Column(sqlalchemy.Enum(SiriSnapshotEtlStatusEnum))
-    etl_start_time = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
-    etl_end_time = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True))
+    etl_start_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
+    etl_end_time = sqlalchemy.Column(DateTimeWithTimeZone)
     error = sqlalchemy.Column(sqlalchemy.String)
     num_successful_parse_vehicle_locations = sqlalchemy.Column(sqlalchemy.Integer)
     num_failed_parse_vehicle_locations = sqlalchemy.Column(sqlalchemy.Integer)
@@ -27,5 +27,5 @@ class SiriSnapshot(Base):
     num_added_siri_ride_stops = sqlalchemy.Column(sqlalchemy.Integer)
     num_added_siri_routes = sqlalchemy.Column(sqlalchemy.Integer)
     num_added_siri_stops = sqlalchemy.Column(sqlalchemy.Integer)
-    last_heartbeat = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True))
+    last_heartbeat = sqlalchemy.Column(DateTimeWithTimeZone)
     created_by = sqlalchemy.Column(sqlalchemy.String)

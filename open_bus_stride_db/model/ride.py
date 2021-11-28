@@ -1,6 +1,6 @@
 import sqlalchemy.orm
 
-from .base import Base
+from .base import Base, DateTimeWithTimeZone
 
 
 class Ride(Base):
@@ -9,7 +9,7 @@ class Ride(Base):
     route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('route.id'), index=True)
     route = sqlalchemy.orm.relationship('Route', back_populates='rides')
     journey_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
-    scheduled_start_time = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
+    scheduled_start_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     vehicle_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
     is_from_gtfs = sqlalchemy.Column(sqlalchemy.Boolean, index=True)
     # direction
