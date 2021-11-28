@@ -10,7 +10,7 @@ class SiriVehicleLocation(Base):
     siri_snapshot = sqlalchemy.orm.relationship('SiriSnapshot', back_populates='siri_vehicle_locations')
     siri_ride_stop_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_ride_stop.id'), index=True)
     siri_ride_stop = sqlalchemy.orm.relationship('SiriRideStop', back_populates='siri_vehicle_locations')
-    recorded_at_time = sqlalchemy.Column(sqlalchemy.DateTime, index=True)
+    recorded_at_time = sqlalchemy.Column(sqlalchemy.DateTime(timezone=True), index=True)
     lon = sqlalchemy.Column(sqlalchemy.Float)
     lat = sqlalchemy.Column(sqlalchemy.Float)
     bearing = sqlalchemy.Column(sqlalchemy.Integer)
