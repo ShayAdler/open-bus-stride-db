@@ -1,11 +1,11 @@
 from .base import Base
 
-from .route import Route
-from .stop import Stop
+from .gtfs_route import GtfsRoute
+from .gtfs_stop import GtfsStop
 from .siri_snapshot import SiriSnapshot, SiriSnapshotEtlStatusEnum
-from .route_stop import RouteStop
-from .ride import Ride
-from .ride_stop import RideStop
+from .gtfs_route_stop import GtfsRouteStop
+from .gtfs_ride import GtfsRide
+from .gtfs_ride_stop import GtfsRideStop
 from .siri_ride import SiriRide
 from .siri_ride_stop import SiriRideStop
 from .siri_route import SiriRoute
