@@ -9,6 +9,9 @@ from alembic import op
 import sqlalchemy as sa
 ${imports if imports else ""}
 
+import open_bus_stride_db
+
+
 # revision identifiers, used by Alembic.
 revision = ${repr(up_revision)}
 down_revision = ${repr(down_revision)}
