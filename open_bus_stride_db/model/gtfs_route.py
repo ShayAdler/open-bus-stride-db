@@ -16,5 +16,5 @@ class GtfsRoute(Base):
     route_alternative = sqlalchemy.Column(sqlalchemy.String)
     agency_name = sqlalchemy.Column(sqlalchemy.String)
     route_type = sqlalchemy.Column(sqlalchemy.String)
-    gtfs_route_stops = sqlalchemy.orm.relationship('GtfsRouteStop', back_populates='gtfs_route')
-    gtfs_rides = sqlalchemy.orm.relationship('GtfsRide', back_populates='gtfs_route')
+    gtfs_route_stops = sqlalchemy.orm.relationship('GtfsRouteStop', back_populates='gtfs_route', cascade="all, delete")
+    gtfs_rides = sqlalchemy.orm.relationship('GtfsRide', back_populates='gtfs_route', cascade="all, delete")
