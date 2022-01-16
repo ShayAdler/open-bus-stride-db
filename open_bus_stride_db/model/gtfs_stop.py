@@ -7,6 +7,7 @@ class GtfsStop(Base):
     __tablename__ = 'gtfs_stop'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     date = sqlalchemy.Column(sqlalchemy.Date, index=True)
+    mot_id = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     code = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     lat = sqlalchemy.Column(sqlalchemy.Float)
     lon = sqlalchemy.Column(sqlalchemy.Float)
