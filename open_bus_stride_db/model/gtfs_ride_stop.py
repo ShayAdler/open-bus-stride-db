@@ -2,6 +2,8 @@ from .base import Base
 
 import sqlalchemy.orm
 
+from open_bus_stride_db.model.base import DateTimeWithTimeZone
+
 
 class GtfsRideStop(Base):
     __tablename__ = 'gtfs_ride_stop'
@@ -10,8 +12,8 @@ class GtfsRideStop(Base):
     gtfs_stop = sqlalchemy.orm.relationship('GtfsStop', back_populates='gtfs_ride_stops')
     gtfs_ride_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'), index=True)
     gtfs_ride = sqlalchemy.orm.relationship('GtfsRide', back_populates='gtfs_ride_stops')
-    arrival_time = sqlalchemy.Column(sqlalchemy.String)
-    departure_time = sqlalchemy.Column(sqlalchemy.String)
+    arrival_time = sqlalchemy.Column(DateTimeWithTimeZone)
+    departure_time = sqlalchemy.Column(DateTimeWithTimeZone)
     stop_sequence = sqlalchemy.Column(sqlalchemy.Integer)
     pickup_type = sqlalchemy.Column(sqlalchemy.Integer)
     drop_off_type = sqlalchemy.Column(sqlalchemy.Integer)

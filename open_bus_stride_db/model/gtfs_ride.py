@@ -9,6 +9,4 @@ class GtfsRide(Base):
     gtfs_route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_route.id'), index=True)
     gtfs_route = sqlalchemy.orm.relationship('GtfsRoute', back_populates='gtfs_rides')
     journey_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
-    scheduled_start_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
-    vehicle_ref = sqlalchemy.Column(sqlalchemy.String, index=True)
     gtfs_ride_stops = sqlalchemy.orm.relationship('GtfsRideStop', back_populates='gtfs_ride')
