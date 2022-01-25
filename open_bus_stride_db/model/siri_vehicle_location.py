@@ -16,3 +16,4 @@ class SiriVehicleLocation(Base):
     bearing = sqlalchemy.Column(sqlalchemy.Integer)
     velocity = sqlalchemy.Column(sqlalchemy.Integer)
     distance_from_journey_start = sqlalchemy.Column(sqlalchemy.Integer)
+    distance_from_siri_ride_stop_meters = sqlalchemy.Column(sqlalchemy.Integer)

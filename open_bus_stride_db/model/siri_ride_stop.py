@@ -20,3 +20,4 @@ class SiriRideStop(Base):
     order = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     siri_vehicle_locations = sqlalchemy.orm.relationship('SiriVehicleLocation', back_populates='siri_ride_stop')
     gtfs_stop_id = sqlalchemy.Column(sqlalchemy.Integer)
+    nearest_siri_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer)
