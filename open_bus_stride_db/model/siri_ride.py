@@ -11,6 +11,10 @@ class SiriRide(Base):
             'siri_route_id', 'journey_ref', 'vehicle_ref',
             unique=True
         ),
+        sqlalchemy.Index(
+            'idx_siri_ride_scheduled_start_date',
+            sqlalchemy.text("date_trunc('day', scheduled_start_time)::date")
+        )
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     siri_route_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_route.id'), index=True)
