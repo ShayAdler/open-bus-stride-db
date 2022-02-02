@@ -16,6 +16,3 @@ class SiriRoute(Base):
     line_ref = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     operator_ref = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     siri_rides = sqlalchemy.orm.relationship('SiriRide', back_populates='siri_route')
-
-    # updated from stride-etl siri update-routes-gtfs based on line_ref and operator_ref
-    gtfs_route_id = sqlalchemy.Column(sqlalchemy.Integer)
