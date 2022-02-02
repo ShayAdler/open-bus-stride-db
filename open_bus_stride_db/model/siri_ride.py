@@ -30,3 +30,11 @@ class SiriRide(Base):
     last_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
     updated_duration_minutes = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     duration_minutes = sqlalchemy.Column(sqlalchemy.Integer, index=True)
+
+    # added by open-bus-stride-etl siri update-rides-gtfs
+    # matches to gtfs-ride based on journey_ref
+    journey_gtfs_ride_id = sqlalchemy.Column(sqlalchemy.Integer)
+    # matches to gtfs-ride based on route operator/line refs and scheduled_start_time
+    route_gtfs_ride_id = sqlalchemy.Column(sqlalchemy.Integer)
+    # uses best match from either journey or route gtfs ride ids
+    gtfs_ride_id = sqlalchemy.Column(sqlalchemy.Integer)
