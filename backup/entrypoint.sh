@@ -10,6 +10,8 @@ if [ "${1}" == "--cron" ]; then
   echo "${2} /srv/entrypoint.sh --from-cron 2>&1" > /srv/crontab/root
   echo >> /srv/crontab/root
   exec crond -f -L /dev/stdout -c /srv/crontab
+elif [ "${1}" == "--health-daemon" ]; then
+  exec python3 /srv/health_daemon.py
 else
   mkdir -p /srv/backup &&\
   cd /srv/backup &&\
