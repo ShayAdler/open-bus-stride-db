@@ -12,5 +12,11 @@ class GtfsStop(Base):
     lon = sqlalchemy.Column(sqlalchemy.Float)
     name = sqlalchemy.Column(sqlalchemy.String)
     city = sqlalchemy.Column(sqlalchemy.String)
-    gtfs_ride_stops = sqlalchemy.orm.relationship('GtfsRideStop', back_populates='gtfs_stop')
-    gtfs_stop_mot_ids = sqlalchemy.orm.relationship('GtfsStopMotId', back_populates='gtfs_stop')
+    gtfs_ride_stops = sqlalchemy.orm.relationship(
+        'GtfsRideStop', back_populates='gtfs_stop',
+        primaryjoin='GtfsStop.id==GtfsRideStop.gtfs_stop_id'
+    )
+    gtfs_stop_mot_ids = sqlalchemy.orm.relationship(
+        'GtfsStopMotId', back_populates='gtfs_stop',
+        primaryjoin='GtfsStop.id==GtfsStopMotId.gtfs_stop_id'
+    )

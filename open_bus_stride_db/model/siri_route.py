@@ -15,4 +15,7 @@ class SiriRoute(Base):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     line_ref = sqlalchemy.Column(sqlalchemy.Integer, index=True)
     operator_ref = sqlalchemy.Column(sqlalchemy.Integer, index=True)
-    siri_rides = sqlalchemy.orm.relationship('SiriRide', back_populates='siri_route')
+    siri_rides = sqlalchemy.orm.relationship(
+        'SiriRide', back_populates='siri_route',
+        primaryjoin='SiriRoute.id==SiriRide.siri_route_id'
+    )
