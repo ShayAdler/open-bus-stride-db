@@ -17,8 +17,8 @@ class SiriVehicleLocation(Base):
         foreign_keys=[siri_ride_stop_id]
     )
     recorded_at_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
-    lon = sqlalchemy.Column(sqlalchemy.Float)
-    lat = sqlalchemy.Column(sqlalchemy.Float)
+    lon = sqlalchemy.Column(sqlalchemy.Float, index=True)
+    lat = sqlalchemy.Column(sqlalchemy.Float, index=True)
     bearing = sqlalchemy.Column(sqlalchemy.Integer)
     velocity = sqlalchemy.Column(sqlalchemy.Integer)
     distance_from_journey_start = sqlalchemy.Column(sqlalchemy.Integer)
