@@ -29,4 +29,4 @@ class SiriRideStop(Base):
         primaryjoin='SiriRideStop.id==SiriVehicleLocation.siri_ride_stop_id'
     )
     gtfs_stop_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'))
-    nearest_siri_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'))
+    nearest_siri_vehicle_location_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'), index=True)
