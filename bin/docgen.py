@@ -11,6 +11,12 @@ from sqlalchemy_schemadisplay import create_schema_graph
 DATA_MODEL_URL = 'https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md'
 
 
+# TODO: populate automatically and link to the ETL documentation
+ETL_LINKS = {
+    "open_bus_stride_etl.gtfs.update_ride_aggregations": {}
+}
+
+
 def generate_dbschema(output_dir):
     graph = create_schema_graph(
         metadata=Base.metadata,
@@ -39,6 +45,11 @@ def get_desc_markdown(tables, table_name_, desc):
                     f'[[{column_name}]]',
                     f'[{column_name}]({DATA_MODEL_URL}#{table_name}{column_name})'
                 )
+    for etl_link_id in ETL_LINKS.keys():
+        desc = desc.replace(
+            f'[[{etl_link_id}]]',
+            f'`{etl_link_id}`',
+        )
     return desc + "\n\n"
 
 

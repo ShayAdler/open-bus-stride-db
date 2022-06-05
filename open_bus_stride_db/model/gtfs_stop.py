@@ -1,13 +1,26 @@
-from .base import Base
+from .base import Base, info
 
 import sqlalchemy.orm
 
 
 class GtfsStop(Base):
     __tablename__ = 'gtfs_stop'
+    __table_args__ = (
+        {**info("""
+            A single stop. Populated daily from the MOT GTFS data. 
+        """)}
+    )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    date = sqlalchemy.Column(sqlalchemy.Date, index=True)
-    code = sqlalchemy.Column(sqlalchemy.Integer, index=True)
+    date = sqlalchemy.Column(
+        sqlalchemy.Date, index=True,
+        **info("""
+            Because the GTFS data may change daily, each stop is relevant only for a single day specified in this field.
+        """)
+    )
+    code = sqlalchemy.Column(
+        sqlalchemy.Integer, index=True,
+        **info("The GTFS stop code.")
+    )
     lat = sqlalchemy.Column(sqlalchemy.Float)
     lon = sqlalchemy.Column(sqlalchemy.Float)
     name = sqlalchemy.Column(sqlalchemy.String)

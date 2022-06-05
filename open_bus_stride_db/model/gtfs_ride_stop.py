@@ -2,18 +2,29 @@ from .base import Base
 
 import sqlalchemy.orm
 
-from open_bus_stride_db.model.base import DateTimeWithTimeZone
+from open_bus_stride_db.model.base import DateTimeWithTimeZone, info
 
 
 class GtfsRideStop(Base):
     __tablename__ = 'gtfs_ride_stop'
+    __table_args__ = (
+        {**info("""
+            A planned stop along a [[gtfs_ride]]. Populated daily from the MOT GTFS data. 
+        """)}
+    )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    gtfs_stop_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'), index=True)
+    gtfs_stop_id = sqlalchemy.Column(
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'), index=True,
+        **info("The related [[gtfs_stop]].")
+    )
     gtfs_stop = sqlalchemy.orm.relationship(
         'GtfsStop', back_populates='gtfs_ride_stops',
         foreign_keys=[gtfs_stop_id]
     )
-    gtfs_ride_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'), index=True)
+    gtfs_ride_id = sqlalchemy.Column(
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'), index=True,
+        **info("The related [[gtfs_ride]].")
+    )
     gtfs_ride = sqlalchemy.orm.relationship(
         'GtfsRide', back_populates='gtfs_ride_stops',
         foreign_keys=[gtfs_ride_id]
