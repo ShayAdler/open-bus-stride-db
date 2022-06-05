@@ -4,208 +4,208 @@
 
 ### gtfs_route
 
-#### id
+#### gtfs_route.id
 
-#### date
+#### gtfs_route.date
 
-#### line_ref
+#### gtfs_route.line_ref
 
-#### operator_ref
+#### gtfs_route.operator_ref
 
-#### route_short_name
+#### gtfs_route.route_short_name
 
-#### route_long_name
+#### gtfs_route.route_long_name
 
-#### route_mkt
+#### gtfs_route.route_mkt
 
-#### route_direction
+#### gtfs_route.route_direction
 
-#### route_alternative
+#### gtfs_route.route_alternative
 
-#### agency_name
+#### gtfs_route.agency_name
 
-#### route_type
+#### gtfs_route.route_type
 
 ### gtfs_stop
 
-#### id
+#### gtfs_stop.id
 
-#### date
+#### gtfs_stop.date
 
-#### code
+#### gtfs_stop.code
 
-#### lat
+#### gtfs_stop.lat
 
-#### lon
+#### gtfs_stop.lon
 
-#### name
+#### gtfs_stop.name
 
-#### city
+#### gtfs_stop.city
 
 ### gtfs_stop_mot_id
 
-#### id
+#### gtfs_stop_mot_id.id
 
-#### gtfs_stop_id
+#### gtfs_stop_mot_id.gtfs_stop_id
 
-#### mot_id
+#### gtfs_stop_mot_id.mot_id
 
 ### siri_snapshot
 
-#### id
+#### siri_snapshot.id
 
-#### snapshot_id
+#### siri_snapshot.snapshot_id
 
-#### etl_status
+#### siri_snapshot.etl_status
 
-#### etl_start_time
+#### siri_snapshot.etl_start_time
 
-#### etl_end_time
+#### siri_snapshot.etl_end_time
 
-#### error
+#### siri_snapshot.error
 
-#### num_successful_parse_vehicle_locations
+#### siri_snapshot.num_successful_parse_vehicle_locations
 
-#### num_failed_parse_vehicle_locations
+#### siri_snapshot.num_failed_parse_vehicle_locations
 
-#### num_added_siri_rides
+#### siri_snapshot.num_added_siri_rides
 
-#### num_added_siri_ride_stops
+#### siri_snapshot.num_added_siri_ride_stops
 
-#### num_added_siri_routes
+#### siri_snapshot.num_added_siri_routes
 
-#### num_added_siri_stops
+#### siri_snapshot.num_added_siri_stops
 
-#### last_heartbeat
+#### siri_snapshot.last_heartbeat
 
-#### created_by
+#### siri_snapshot.created_by
 
 ### gtfs_ride
 
-#### id
+#### gtfs_ride.id
 
-#### gtfs_route_id
+#### gtfs_ride.gtfs_route_id
 
-#### journey_ref
+#### gtfs_ride.journey_ref
 
-#### first_gtfs_ride_stop_id
+#### gtfs_ride.first_gtfs_ride_stop_id
 
-#### last_gtfs_ride_stop_id
+#### gtfs_ride.last_gtfs_ride_stop_id
 
-#### start_time
+#### gtfs_ride.start_time
 
-#### end_time
+#### gtfs_ride.end_time
 
 ### gtfs_ride_stop
 
-#### id
+#### gtfs_ride_stop.id
 
-#### gtfs_stop_id
+#### gtfs_ride_stop.gtfs_stop_id
 
-#### gtfs_ride_id
+#### gtfs_ride_stop.gtfs_ride_id
 
-#### arrival_time
+#### gtfs_ride_stop.arrival_time
 
-#### departure_time
+#### gtfs_ride_stop.departure_time
 
-#### stop_sequence
+#### gtfs_ride_stop.stop_sequence
 
-#### pickup_type
+#### gtfs_ride_stop.pickup_type
 
-#### drop_off_type
+#### gtfs_ride_stop.drop_off_type
 
-#### shape_dist_traveled
+#### gtfs_ride_stop.shape_dist_traveled
 
 ### siri_ride
 
-#### id
+#### siri_ride.id
 
-#### siri_route_id
+#### siri_ride.siri_route_id
 
-#### journey_ref
+#### siri_ride.journey_ref
 
-#### scheduled_start_time
+#### siri_ride.scheduled_start_time
 
-#### vehicle_ref
+#### siri_ride.vehicle_ref
 
-#### updated_first_last_vehicle_locations
+#### siri_ride.updated_first_last_vehicle_locations
 
-#### first_vehicle_location_id
+#### siri_ride.first_vehicle_location_id
 
-#### last_vehicle_location_id
+#### siri_ride.last_vehicle_location_id
 
-#### updated_duration_minutes
+#### siri_ride.updated_duration_minutes
 
-#### duration_minutes
+#### siri_ride.duration_minutes
 
-#### journey_gtfs_ride_id
+#### siri_ride.journey_gtfs_ride_id
 
-#### route_gtfs_ride_id
+#### siri_ride.route_gtfs_ride_id
 
-#### gtfs_ride_id
+#### siri_ride.gtfs_ride_id
 
 ### siri_ride_stop
 
 A stop along a ride received from the SIRI data.
-All SIRI Vehicle locations are related to this object on [[siri_vehicle_location.siri_ride_stop_id]]
+All SIRI Vehicle locations are related to this object on [siri_vehicle_location.siri_ride_stop_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location.siri_ride_stop_id)
 
-#### id
+#### siri_ride_stop.id
 
-#### siri_stop_id
+#### siri_ride_stop.siri_stop_id
 
-#### siri_ride_id
+#### siri_ride_stop.siri_ride_id
 
-#### order
+#### siri_ride_stop.order
 
 The order of this stop along the ride, first stop is 0
 
-#### gtfs_stop_id
+#### siri_ride_stop.gtfs_stop_id
 
-The related [[gtfs_stop]]
+The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop)
 
-#### nearest_siri_vehicle_location_id
+#### siri_ride_stop.nearest_siri_vehicle_location_id
 
 ### siri_route
 
 A Bus route which was received from the SIRI data.
-Multiple rides can occur on a route, these are available in [[siri_ride]]
-and related by [[siri_ride.siri_route_id]]
+Multiple rides can occur on a route, these are available in [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride)
+and related by [siri_ride.siri_route_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride.siri_route_id)
 
-#### id
+#### siri_route.id
 
-#### line_ref
+#### siri_route.line_ref
 
-In combination with the [[operator_ref]] - uniquely identifies the route and relates to the GTFS identifiers
+In combination with the [operator_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route.operator_ref) - uniquely identifies the route and relates to the GTFS identifiers
 
-#### operator_ref
+#### siri_route.operator_ref
 
-In combination with the [[line_ref]] - uniquely identifies the route and relates to the GTFS identifiers
+In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route.line_ref) - uniquely identifies the route and relates to the GTFS identifiers
 
 ### siri_stop
 
-#### id
+#### siri_stop.id
 
-#### code
+#### siri_stop.code
 
 ### siri_vehicle_location
 
-#### id
+#### siri_vehicle_location.id
 
-#### siri_snapshot_id
+#### siri_vehicle_location.siri_snapshot_id
 
-#### siri_ride_stop_id
+#### siri_vehicle_location.siri_ride_stop_id
 
-#### recorded_at_time
+#### siri_vehicle_location.recorded_at_time
 
-#### lon
+#### siri_vehicle_location.lon
 
-#### lat
+#### siri_vehicle_location.lat
 
-#### bearing
+#### siri_vehicle_location.bearing
 
-#### velocity
+#### siri_vehicle_location.velocity
 
-#### distance_from_journey_start
+#### siri_vehicle_location.distance_from_journey_start
 
-#### distance_from_siri_ride_stop_meters
+#### siri_vehicle_location.distance_from_siri_ride_stop_meters
 
