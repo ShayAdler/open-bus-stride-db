@@ -54,47 +54,38 @@ jobs:
           uci docker tag-push \
             --source-tag-name backup \
             --push-tag-name "${DOCKER_BACKUP_IMAGE_NAME}:latest" &&\
-          if ! uci git check-last-commit-message --contains --no-deploy; then
+          if ! git log -1 --pretty=format:"%s" | grep -- --no-deploy; then
             cd `mktemp -d` &&\
-            uci git checkout \
-              --github-repo-name hasadna/hasadna-k8s \
-              --branch-name master \
-              --ssh-key "${HASADNA_K8S_DEPLOY_KEY}" \
-              --path hasadna-k8s \
-              --config-user-name open-bus-stride-db-ci &&\
+            echo "${HASADNA_K8S_DEPLOY_KEY}" > hasadna_k8s_deploy_key &&\
+            chmod 400 hasadna_k8s_deploy_key &&\
+            export GIT_SSH_COMMAND="ssh -i `pwd`/hasadna_k8s_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+            git clone git@github.com:hasadna/hasadna-k8s.git &&\
             cd hasadna-k8s &&\
             python update_yaml.py '{"strideDbAppImage":"'"${DOCKER_APP_IMAGE_NAME}:${GITHUB_SHA}"'"}' apps/openbus/values-hasadna-auto-updated.yaml &&\
+            git config --global user.name "Open Bus Stride DB CI" &&\
+            git config --global user.email "open-bus-stride-db-ci@localhost" &&\
             git add apps/openbus/values-hasadna-auto-updated.yaml && git commit -m "automatic update of open bus stride db" &&\
             git push origin master &&\
-            cd `mktemp -d` &&\
-            uci git checkout \
-              --github-repo-name hasadna/open-bus-siri-etl \
-              --branch-name main \
-              --ssh-key "${SIRI_ETL_DEPLOY_KEY}" \
-              --path open-bus-siri-etl \
-              --config-user-name open-bus-stride-db-ci &&\
+            echo "${SIRI_ETL_DEPLOY_KEY}" > siri_etl_deploy_key &&\
+            chmod 400 siri_etl_deploy_key &&\
+            export GIT_SSH_COMMAND="ssh -i `pwd`/siri_etl_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+            git clone git@github.com:hasadna/open-bus-siri-etl.git &&\
             cd open-bus-siri-etl &&\
             bin/update_stride_db_dependencies.py "${GITHUB_SHA}" &&\
             git commit -m "automatic update of open bus stride db dependencies" &&\
             git push origin main &&\
-            cd `mktemp -d` &&\
-            uci git checkout \
-              --github-repo-name hasadna/open-bus-stride-api \
-              --branch-name main \
-              --ssh-key "${STRIDE_API_DEPLOY_KEY}" \
-              --path open-bus-stride-api \
-              --config-user-name open-bus-stride-db-ci &&\
+            echo "${STRIDE_API_DEPLOY_KEY}" > stride_api_deploy_key &&\
+            chmod 400 stride_api_deploy_key &&\
+            export GIT_SSH_COMMAND="ssh -i `pwd`/stride_api_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+            git clone git@github.com:hasadna/open-bus-stride-api.git &&\
             cd open-bus-stride-api &&\
             bin/update_stride_db_dependencies.py "${GITHUB_SHA}" &&\
             git commit -m "automatic update of open bus stride db dependencies" &&\
             git push origin main &&\
-            cd `mktemp -d` &&\
-            uci git checkout \
-              --github-repo-name hasadna/open-bus-stride-etl \
-              --branch-name main \
-              --ssh-key "${STRIDE_ETL_DEPLOY_KEY}" \
-              --path open-bus-stride-etl \
-              --config-user-name open-bus-stride-db-ci &&\
+            echo "${STRIDE_ETL_DEPLOY_KEY}" > stride_etl_deploy_key &&\
+            chmod 400 stride_etl_deploy_key &&\
+            export GIT_SSH_COMMAND="ssh -i `pwd`/stride_etl_deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&\
+            git clone git@github.com:hasadna/open-bus-stride-etl.git &&\
             cd open-bus-stride-etl &&\
             echo "${GITHUB_SHA}" > stride-db-latest-commit.txt &&\
             git add stride-db-latest-commit.txt &&\

@@ -32,12 +32,12 @@ def get_desc_markdown(tables, table_name_, desc):
         for column_name in table['columns'].keys():
             desc = desc.replace(
                 f'[[{table_name}.{column_name}]]',
-                f'[{table_name}.{column_name}]({DATA_MODEL_URL}#{table_name}.{column_name})'
+                f'[{table_name}.{column_name}]({DATA_MODEL_URL}#{table_name}{column_name})'
             )
             if table_name_ == table_name:
                 desc = desc.replace(
                     f'[[{column_name}]]',
-                    f'[{column_name}]({DATA_MODEL_URL}#{table_name}.{column_name})'
+                    f'[{column_name}]({DATA_MODEL_URL}#{table_name}{column_name})'
                 )
     return desc + "\n\n"
 
