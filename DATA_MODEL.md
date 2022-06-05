@@ -78,7 +78,7 @@ The related [gtfs_route](https://github.com/hasadna/open-bus-stride-db/blob/main
 
 #### gtfs_ride.journey_ref
 
-A unique identifier for this route as provided by the original MOT GTFS data.
+A unique identifier for this ride as provided by the original MOT GTFS data.
 
 #### gtfs_ride.first_gtfs_ride_stop_id
 
@@ -128,31 +128,60 @@ The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/
 
 ### siri_ride
 
+A ride along a [siri_route](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route). Populated in near real time from the SIRI data.
+
 #### siri_ride.id
 
 #### siri_ride.siri_route_id
 
+The related [siri_route](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route).
+
 #### siri_ride.journey_ref
+
+A unique identifier for this ride as provided by the SIRI data.
 
 #### siri_ride.scheduled_start_time
 
+The scheduled start time as provided by the SIRI data.
+Note that this value may change over time but we only show the first
+value as received from the SIRI real-time data.
+See [this issue](https://github.com/hasadna/open-bus/issues/390) for more details.
+
 #### siri_ride.vehicle_ref
 
-#### siri_ride.updated_first_last_vehicle_locations
+A unique identifier of the bus or vehicle.
+This may be the license number but could 
+also be other identifier as provided by the SIRI data.
 
 #### siri_ride.first_vehicle_location_id
 
+The first [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location) along this ride.
+Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
+
 #### siri_ride.last_vehicle_location_id
 
-#### siri_ride.updated_duration_minutes
+The last [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location) along this ride.
+Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
 
 #### siri_ride.duration_minutes
 
+The duration of this ride in minutes.
+Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
+
 #### siri_ride.journey_gtfs_ride_id
+
+The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on journey_ref.
+Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
 
 #### siri_ride.route_gtfs_ride_id
 
+The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on operator_ref, line_ref and scheduled_start_time.
+Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
+
 #### siri_ride.gtfs_ride_id
+
+The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on best match from either [journey_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridejourney_gtfs_ride_id) or [route_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_rideroute_gtfs_ride_id).
+Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
 
 ### siri_ride_stop
 
