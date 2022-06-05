@@ -2,7 +2,7 @@
 
 ![Database Schema Diagram](dbschema.png)
 
-### gtfs_route
+## gtfs_route
 
 A planned route. Populated daily from the MOT GTFS data.
 
@@ -34,7 +34,7 @@ Unique identifier for this route, together with [line_ref](https://github.com/ha
 
 #### gtfs_route.route_type
 
-### gtfs_stop
+## gtfs_stop
 
 A single stop. Populated daily from the MOT GTFS data.
 
@@ -56,7 +56,7 @@ The GTFS stop code.
 
 #### gtfs_stop.city
 
-### gtfs_stop_mot_id
+## gtfs_stop_mot_id
 
 Each [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop) can have multiple MOT identifiers, represented in this table.
 
@@ -66,7 +66,7 @@ Each [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MO
 
 #### gtfs_stop_mot_id.mot_id
 
-### gtfs_ride
+## gtfs_ride
 
 A planned ride (AKA trip) along a specified route. Populated daily from the MOT GTFS data.
 
@@ -100,7 +100,7 @@ Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
 The end time of this ride. 
 Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
 
-### gtfs_ride_stop
+## gtfs_ride_stop
 
 A planned stop along a [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride). Populated daily from the MOT GTFS data.
 
@@ -126,7 +126,7 @@ The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/
 
 #### gtfs_ride_stop.shape_dist_traveled
 
-### siri_ride
+## siri_ride
 
 A ride along a [siri_route](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route). Populated in near real time from the SIRI data.
 
@@ -183,7 +183,7 @@ Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
 The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on best match from either [journey_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridejourney_gtfs_ride_id) or [route_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_rideroute_gtfs_ride_id).
 Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
 
-### siri_ride_stop
+## siri_ride_stop
 
 A stop along a ride received from the SIRI data.
 All SIRI Vehicle locations are related to this object on [siri_vehicle_location.siri_ride_stop_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_locationsiri_ride_stop_id)
@@ -204,7 +204,7 @@ The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/
 
 #### siri_ride_stop.nearest_siri_vehicle_location_id
 
-### siri_route
+## siri_route
 
 A Bus route which was received from the SIRI data.
 Multiple rides can occur on a route, these are available in [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride)
@@ -220,13 +220,13 @@ In combination with the [operator_ref](https://github.com/hasadna/open-bus-strid
 
 In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_routeline_ref) - uniquely identifies the route and relates to the GTFS identifiers
 
-### siri_stop
+## siri_stop
 
 #### siri_stop.id
 
 #### siri_stop.code
 
-### siri_vehicle_location
+## siri_vehicle_location
 
 #### siri_vehicle_location.id
 
@@ -248,7 +248,7 @@ In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db
 
 #### siri_vehicle_location.distance_from_siri_ride_stop_meters
 
-### siri_snapshot
+## siri_snapshot
 
 #### siri_snapshot.id
 
