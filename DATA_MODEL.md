@@ -185,30 +185,37 @@ Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
 
 ## siri_ride_stop
 
-A stop along a ride received from the SIRI data.
-All SIRI Vehicle locations are related to this object on [siri_vehicle_location.siri_ride_stop_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_locationsiri_ride_stop_id)
+A [siri_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_stop) along a specified [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride).
+Populated in near real time from the SIRI data.
 
 #### siri_ride_stop.id
 
 #### siri_ride_stop.siri_stop_id
 
+The related [siri_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_stop).
+
 #### siri_ride_stop.siri_ride_id
+
+The related [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride).
 
 #### siri_ride_stop.order
 
-The order of this stop along the ride, first stop is 0
+The order of this stop along the ride, first stop is 0.
 
 #### siri_ride_stop.gtfs_stop_id
 
-The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop)
+The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop).
 
 #### siri_ride_stop.nearest_siri_vehicle_location_id
 
+The siri vehicle location from this ride which is nearest to 
+the [gtfs_stop.lon](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stoplon) / [gtfs_stop.lat](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stoplat).
+
 ## siri_route
 
-A Bus route which was received from the SIRI data.
+A SIRI route, populated in near real time from the SIRI data.
 Multiple rides can occur on a route, these are available in [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride)
-and related by [siri_ride.siri_route_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridesiri_route_id)
+and related by [siri_ride.siri_route_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridesiri_route_id).
 
 #### siri_route.id
 
@@ -222,39 +229,72 @@ In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db
 
 ## siri_stop
 
+A SIRI stop, populated in near real time from the SIRI data.
+
 #### siri_stop.id
 
 #### siri_stop.code
 
+Corresponds to the GTFS stop code, as received from the SIRI data.
+
 ## siri_vehicle_location
+
+A vehicle location, accurate to within 1 minute, populated in near real time from the SIRI data.
 
 #### siri_vehicle_location.id
 
 #### siri_vehicle_location.siri_snapshot_id
 
+The [siri_snapshot](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_snapshot) which contained this vehicle location.
+
 #### siri_vehicle_location.siri_ride_stop_id
+
+The [siri_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride_stop) which is nearest to this vehicle location.
+This relation can be used to get all relevant details like route / ride / stop relating to this location.
 
 #### siri_vehicle_location.recorded_at_time
 
+The date/time when this location was recorded according to the MOT SIRI data.
+
 #### siri_vehicle_location.lon
+
+The geographical lon of this vehicle at the recorded time, according to the MOT SIRI data.
 
 #### siri_vehicle_location.lat
 
+The geographical lat of this vehicle at the recorded time, according to the MOT SIRI data.
+
 #### siri_vehicle_location.bearing
+
+The bearing of this vehicle at the recorded time, according to the MOT SIRI data.
 
 #### siri_vehicle_location.velocity
 
+The velocity of this vehicle at the recorded time, according to the MOT SIRI data.
+
 #### siri_vehicle_location.distance_from_journey_start
+
+The distance from journey start of this vehicle at the recorded time, according to the MOT SIRI data.
 
 #### siri_vehicle_location.distance_from_siri_ride_stop_meters
 
+Distance from the nearest [siri_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride_stop) according to the GTFS stop location.
+
 ## siri_snapshot
+
+A SIRI Snapshot which was received from MOT. We get a new snapshot every 1 minute.
 
 #### siri_snapshot.id
 
 #### siri_snapshot.snapshot_id
 
+A string which uniquely identifies the snapshot and the date/time when it was taken.
+Uses the following format: year/month/day/hours/minutes (e.g. 2022/03/09/11/08).
+
 #### siri_snapshot.etl_status
+
+Describes the ETL status of this snapshot, 
+only snapshots with status "loaded" should be considered ready for usage.
 
 #### siri_snapshot.etl_start_time
 
@@ -262,19 +302,29 @@ In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db
 
 #### siri_snapshot.error
 
+If the ETL processing failed for this snapshot, will contain the error message.
+
 #### siri_snapshot.num_successful_parse_vehicle_locations
+
+Number of [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location)s which were successfully parsed from this SIRI snapshot.
 
 #### siri_snapshot.num_failed_parse_vehicle_locations
 
+Number of [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location)s which failed to be parsed from this SIRI snapshot.
+
 #### siri_snapshot.num_added_siri_rides
+
+Number of new [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride)s which were added as a result of processing this SIRI snapshot.
 
 #### siri_snapshot.num_added_siri_ride_stops
 
+Number of new [siri_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride_stop)s which were added as a result of processing this SIRI snapshot.
+
 #### siri_snapshot.num_added_siri_routes
+
+Number of new [siri_route](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route)s which were added as a result of processing this SIRI snapshot.
 
 #### siri_snapshot.num_added_siri_stops
 
-#### siri_snapshot.last_heartbeat
-
-#### siri_snapshot.created_by
+Number of new [siri_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_stop)s which were added as a result of processing this SIRI snapshot.
 
