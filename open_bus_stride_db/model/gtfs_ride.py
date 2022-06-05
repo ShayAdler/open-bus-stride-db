@@ -21,7 +21,7 @@ class GtfsRide(Base):
     )
     journey_ref = sqlalchemy.Column(
         sqlalchemy.String, index=True,
-        **info("A unique identifier for this route as provided by the original MOT GTFS data.")
+        **info("A unique identifier for this ride as provided by the original MOT GTFS data.")
     )
     gtfs_ride_stops = sqlalchemy.orm.relationship(
         'GtfsRideStop', back_populates='gtfs_ride',

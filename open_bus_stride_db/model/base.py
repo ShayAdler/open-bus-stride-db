@@ -34,5 +34,5 @@ class DateTimeWithTimeZone(TypeDecorator):
         return value
 
 
-def info(desc):
-    return {"info": {"desc": desc}}
+def info(desc=None, hide=False):
+    return {"info": {"desc": desc, "hide": hide}}

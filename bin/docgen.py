@@ -13,7 +13,9 @@ DATA_MODEL_URL = 'https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_M
 
 # TODO: populate automatically and link to the ETL documentation
 ETL_LINKS = {
-    "open_bus_stride_etl.gtfs.update_ride_aggregations": {}
+    "open_bus_stride_etl.gtfs.update_ride_aggregations": {},
+    "open-bus-stride-etl.siri.add-ride-duration-minutes": {},
+    "open-bus-stride-etl.siri.update-rides-gtfs": {},
 }
 
 
@@ -60,7 +62,8 @@ def generate_markdown(output_dir):
     for table_name, table in Base.metadata.tables.items():
         columns = OrderedDict()
         for column_name, column in table.columns.items():
-            columns[column_name] = {'desc': column.info.get('desc')}
+            if not column.info.get('hide'):
+                columns[column_name] = {'desc': column.info.get('desc')}
         tables[table_name] = {
             'desc': table.info.get('desc'),
             'columns': columns
