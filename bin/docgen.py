@@ -69,7 +69,7 @@ def generate_markdown(output_dir):
             'columns': columns
         }
     for table_name, table in tables.items():
-        markdown += f'### {table_name}\n\n'
+        markdown += f'## {table_name}\n\n'
         if table['desc']:
             markdown += get_desc_markdown(tables, table_name, table['desc'])
         for column_name, column in table['columns'].items():
