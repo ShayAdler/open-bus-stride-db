@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - env:
-        DOCKER_APP_IMAGE_NAME: "docker.pkg.github.com/hasadna/open-bus-stride-db/open-bus-stride-db"
-        DOCKER_BACKUP_IMAGE_NAME: "docker.pkg.github.com/hasadna/open-bus-stride-db/open-bus-stride-db-backup"
+        DOCKER_APP_IMAGE_NAME: "ghcr.io/hasadna/open-bus-stride-db/open-bus-stride-db"
+        DOCKER_BACKUP_IMAGE_NAME: "ghcr.io/hasadna/open-bus-stride-db/open-bus-stride-db-backup"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         HASADNA_K8S_DEPLOY_KEY: ${{ secrets.HASADNA_K8S_DEPLOY_KEY }}
         SIRI_ETL_DEPLOY_KEY: ${{ secrets.SIRI_ETL_DEPLOY_KEY }}
