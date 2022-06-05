@@ -32,3 +32,7 @@ class DateTimeWithTimeZone(TypeDecorator):
         if value is not None:
             value = value.replace(tzinfo=datetime.timezone.utc)
         return value
+
+
+def info(desc):
+    return {"info": {"desc": desc}}

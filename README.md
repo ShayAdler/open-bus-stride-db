@@ -145,3 +145,23 @@ docker run \
 ```
 
 Backup file is available at .data/backup/stride_db.sql.gz
+
+## Generating documenation
+
+Install dependencies
+
+```
+pip install -r requirements-docgen.txt
+sudo apt install graphviz
+```
+
+Generate docs
+
+```
+python bin/docgen.py
+```
+
+Created files:
+
+* `dbschema.png`
+* `DATA_MODEL.md`
