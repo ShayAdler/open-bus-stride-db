@@ -12,30 +12,43 @@ class SiriRideStop(Base):
             unique=True
         ),
         {**info("""
-            A stop along a ride received from the SIRI data.
-            All SIRI Vehicle locations are related to this object on [[siri_vehicle_location.siri_ride_stop_id]] 
+            A [[siri_stop]] along a specified [[siri_ride]].
+            Populated in near real time from the SIRI data. 
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    siri_stop_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_stop.id'), index=True)
+    siri_stop_id = sqlalchemy.Column(
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_stop.id'), index=True,
+        **info("The related [[siri_stop]].")
+    )
     siri_stop = sqlalchemy.orm.relationship(
         'SiriStop', back_populates='siri_ride_stops',
         foreign_keys=[siri_stop_id]
     )
-    siri_ride_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_ride.id'), index=True)
+    siri_ride_id = sqlalchemy.Column(
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_ride.id'), index=True,
+        **info("The related [[siri_ride]].")
+    )
     siri_ride = sqlalchemy.orm.relationship(
         'SiriRide', back_populates='siri_ride_stops',
         foreign_keys=[siri_ride_id]
     )
-    order = sqlalchemy.Column(sqlalchemy.Integer, index=True, **info(
-        "The order of this stop along the ride, first stop is 0"))
+    order = sqlalchemy.Column(
+        sqlalchemy.Integer, index=True,
+        **info("The order of this stop along the ride, first stop is 0."
+    ))
     siri_vehicle_locations = sqlalchemy.orm.relationship(
         'SiriVehicleLocation', back_populates='siri_ride_stop',
         primaryjoin='SiriRideStop.id==SiriVehicleLocation.siri_ride_stop_id'
     )
     gtfs_stop_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'),
-        **info("The related [[gtfs_stop]]"))
+        **info("The related [[gtfs_stop]].")
+    )
     nearest_siri_vehicle_location_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'), index=True,
-        **info(""))
+        **info("""
+            The siri vehicle location from this ride which is nearest to 
+            the [[gtfs_stop.lon]] / [[gtfs_stop.lat]].
+        """)
+    )
