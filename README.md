@@ -158,7 +158,7 @@ sudo apt install graphviz
 Generate docs
 
 ```
-python bin/docgen.py
+python bin/docgen.py .
 ```
 
 Created files:
