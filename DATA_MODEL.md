@@ -147,7 +147,7 @@
 ### siri_ride_stop
 
 A stop along a ride received from the SIRI data.
-All SIRI Vehicle locations are related to this object on [siri_vehicle_location.siri_ride_stop_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location.siri_ride_stop_id)
+All SIRI Vehicle locations are related to this object on [siri_vehicle_location.siri_ride_stop_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_locationsiri_ride_stop_id)
 
 #### siri_ride_stop.id
 
@@ -169,17 +169,17 @@ The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/
 
 A Bus route which was received from the SIRI data.
 Multiple rides can occur on a route, these are available in [siri_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride)
-and related by [siri_ride.siri_route_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride.siri_route_id)
+and related by [siri_ride.siri_route_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridesiri_route_id)
 
 #### siri_route.id
 
 #### siri_route.line_ref
 
-In combination with the [operator_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route.operator_ref) - uniquely identifies the route and relates to the GTFS identifiers
+In combination with the [operator_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_routeoperator_ref) - uniquely identifies the route and relates to the GTFS identifiers
 
 #### siri_route.operator_ref
 
-In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_route.line_ref) - uniquely identifies the route and relates to the GTFS identifiers
+In combination with the [line_ref](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_routeline_ref) - uniquely identifies the route and relates to the GTFS identifiers
 
 ### siri_stop
 
