@@ -57,7 +57,7 @@ def get_etl_desc_items():
     for line in md.splitlines():
         if line.startswith('#') and len(line.split(' ')) == 2:
             item_id = line.split(' ')[1]
-            url = f'{url}#{item_id.replace(".", "")}'
+            url = f'https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#{item_id.replace(".", "")}'
             res[item_id] = url
     return res
 

@@ -12,7 +12,7 @@ class SiriRoute(Base):
             unique=True
         ),
         {**info("""
-            A SIRI route, populated in near real time from the SIRI data.
+            A SIRI route, populated in near real time from the SIRI data by [[siri-etl-process-snapshot-new-snapshots-daemon]].
             Multiple rides can occur on a route, these are available in [[siri_ride]]
             and related by [[siri_ride.siri_route_id]].
         """)}

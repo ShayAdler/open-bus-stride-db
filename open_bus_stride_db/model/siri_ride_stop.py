@@ -13,7 +13,7 @@ class SiriRideStop(Base):
         ),
         {**info("""
             A [[siri_stop]] along a specified [[siri_ride]].
-            Populated in near real time from the SIRI data. 
+            Populated in near real time from the SIRI data by [[siri-etl-process-snapshot-new-snapshots-daemon]]. 
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

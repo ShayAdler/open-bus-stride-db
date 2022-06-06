@@ -7,7 +7,8 @@ class GtfsRoute(Base):
     __tablename__ = 'gtfs_route'
     __table_args__ = (
         {**info("""
-            A planned route. Populated daily from the MOT GTFS data. 
+            A planned route. 
+            Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

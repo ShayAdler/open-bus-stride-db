@@ -7,7 +7,7 @@ class SiriVehicleLocation(Base):
     __tablename__ = 'siri_vehicle_location'
     __table_args__ = (
         {**info("""
-            A vehicle location, accurate to within 1 minute, populated in near real time from the SIRI data.
+            A vehicle location, accurate to within 1 minute, populated in near real time from the SIRI data by [[siri-etl-process-snapshot-new-snapshots-daemon]].
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

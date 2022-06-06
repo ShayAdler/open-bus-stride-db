@@ -9,7 +9,8 @@ class GtfsRideStop(Base):
     __tablename__ = 'gtfs_ride_stop'
     __table_args__ = (
         {**info("""
-            A planned stop along a [[gtfs_ride]]. Populated daily from the MOT GTFS data. 
+            A planned stop along a [[gtfs_ride]]. 
+            Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

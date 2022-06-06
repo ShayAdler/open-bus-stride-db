@@ -7,7 +7,7 @@ class SiriStop(Base):
     __tablename__ = 'siri_stop'
     __table_args__ = (
         {**info("""
-            A SIRI stop, populated in near real time from the SIRI data.
+            A SIRI stop, populated in near real time from the SIRI data by [[siri-etl-process-snapshot-new-snapshots-daemon]].
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

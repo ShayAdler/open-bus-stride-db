@@ -8,6 +8,7 @@ class GtfsStopMotId(Base):
     __table_args__ = (
         {**info("""
             Each [[gtfs_stop]] can have multiple MOT identifiers, represented in this table.
+            Populated daily from the MOT GTFS data by [[gtfs-etl]].
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
