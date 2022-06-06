@@ -31,27 +31,27 @@ class GtfsRide(Base):
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride_stop.id'),
         **info("""
             The first [[gtfs_ride_stop]] along this ride. 
-            Populated from [[open_bus_stride_etl.gtfs.update_ride_aggregations]].
+            Populated from [[stride-etl-gtfs-update-ride-aggregations]].
         """)
     )
     last_gtfs_ride_stop_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride_stop.id'),
         **info("""
             The last [[gtfs_ride_stop]] along this ride. 
-            Populated from [[open_bus_stride_etl.gtfs.update_ride_aggregations]].
+            Populated from [[stride-etl-gtfs-update-ride-aggregations]].
         """)
     )
     start_time = sqlalchemy.Column(
         DateTimeWithTimeZone,
         **info("""
             The start time of this ride. 
-            Populated from [[open_bus_stride_etl.gtfs.update_ride_aggregations]].
+            Populated from [[stride-etl-gtfs-update-ride-aggregations]].
         """)
     )
     end_time = sqlalchemy.Column(
         DateTimeWithTimeZone,
         **info("""
             The end time of this ride. 
-            Populated from [[open_bus_stride_etl.gtfs.update_ride_aggregations]].
+            Populated from [[stride-etl-gtfs-update-ride-aggregations]].
         """)
     )

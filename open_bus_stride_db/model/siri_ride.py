@@ -62,14 +62,14 @@ class SiriRide(Base):
         sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
         **info("""
             The first [[siri_vehicle_location]] along this ride.
-            Populated by [[open-bus-stride-etl.siri.add-ride-duration-minutes]].
+            Populated by [[stride-etl-siri-add-ride-durations]].
         """)
     )
     last_vehicle_location_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
         **info("""
             The last [[siri_vehicle_location]] along this ride.
-            Populated by [[open-bus-stride-etl.siri.add-ride-duration-minutes]].
+            Populated by [[stride-etl-siri-add-ride-durations]].
         """)
     )
     updated_duration_minutes = sqlalchemy.Column(
@@ -79,7 +79,7 @@ class SiriRide(Base):
         sqlalchemy.Integer, index=True,
         **info("""
             The duration of this ride in minutes.
-            Populated by [[open-bus-stride-etl.siri.add-ride-duration-minutes]].
+            Populated by [[stride-etl-siri-add-ride-durations]].
         """)
     )
 
@@ -88,20 +88,20 @@ class SiriRide(Base):
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'),
         **info("""
             The related [[gtfs_ride]] based on journey_ref.
-            Populated by [[open-bus-stride-etl.siri.update-rides-gtfs]].
+            Populated by [[stride-etl-siri-update-rides-gtfs]].
         """)
     )
     route_gtfs_ride_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'),
         **info("""
             The related [[gtfs_ride]] based on operator_ref, line_ref and scheduled_start_time.
-            Populated by [[open-bus-stride-etl.siri.update-rides-gtfs]].
+            Populated by [[stride-etl-siri-update-rides-gtfs]].
         """)
     )
     gtfs_ride_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'),
         **info("""
             The related [[gtfs_ride]] based on best match from either [[journey_gtfs_ride_id]] or [[route_gtfs_ride_id]].
-            Populated by [[open-bus-stride-etl.siri.update-rides-gtfs]].
+            Populated by [[stride-etl-siri-update-rides-gtfs]].
         """)
     )

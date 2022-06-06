@@ -3,20 +3,13 @@ import sys
 from textwrap import dedent
 from collections import OrderedDict
 
-from open_bus_stride_db.model import Base
-
+import requests
 from sqlalchemy_schemadisplay import create_schema_graph
+
+from open_bus_stride_db.model import Base
 
 
 DATA_MODEL_URL = 'https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md'
-
-
-# TODO: populate automatically and link to the ETL documentation
-ETL_LINKS = {
-    "open_bus_stride_etl.gtfs.update_ride_aggregations": {},
-    "open-bus-stride-etl.siri.add-ride-duration-minutes": {},
-    "open-bus-stride-etl.siri.update-rides-gtfs": {},
-}
 
 
 def generate_dbschema(output_dir):
@@ -30,7 +23,7 @@ def generate_dbschema(output_dir):
     graph.write_png(os.path.join(output_dir, 'dbschema.png'))  # write out the file
 
 
-def get_desc_markdown(tables, table_name_, desc):
+def get_desc_markdown(desc_items, tables, table_name_, desc):
     desc = dedent(desc).strip()
     for table_name, table in tables.items():
         desc = desc.replace(
@@ -47,15 +40,30 @@ def get_desc_markdown(tables, table_name_, desc):
                     f'[[{column_name}]]',
                     f'[{column_name}]({DATA_MODEL_URL}#{table_name}{column_name})'
                 )
-    for etl_link_id in ETL_LINKS.keys():
+    for id, url in desc_items.items():
         desc = desc.replace(
-            f'[[{etl_link_id}]]',
-            f'`{etl_link_id}`',
+            f'[[{id}]]',
+            f'[{id}]({url})'
         )
     return desc + "\n\n"
 
 
+def get_etl_desc_items():
+    res = {}
+    url = 'https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md'
+    response = requests.get(url, timeout=60)
+    response.raise_for_status()
+    md = response.text
+    for line in md.splitlines():
+        if line.startswith('#') and len(line.split(' ')) == 2:
+            item_id = line.split(' ')[1]
+            url = f'{url}#{item_id.replace(".", "")}'
+            res[item_id] = url
+    return res
+
+
 def generate_markdown(output_dir):
+    desc_items = get_etl_desc_items()
     markdown = "# Open Bus Stride Data Model\n\n"
     markdown += "![Database Schema Diagram](dbschema.png)\n\n"
     tables = OrderedDict()
@@ -71,11 +79,11 @@ def generate_markdown(output_dir):
     for table_name, table in tables.items():
         markdown += f'## {table_name}\n\n'
         if table['desc']:
-            markdown += get_desc_markdown(tables, table_name, table['desc'])
+            markdown += get_desc_markdown(desc_items, tables, table_name, table['desc'])
         for column_name, column in table['columns'].items():
             markdown += f'#### {table_name}.{column_name}\n\n'
             if column['desc']:
-                markdown += get_desc_markdown(tables, table_name, column['desc'])
+                markdown += get_desc_markdown(desc_items, tables, table_name, column['desc'])
     with open(os.path.join(output_dir, "DATA_MODEL.md"), 'w') as f:
         f.write(markdown)
 

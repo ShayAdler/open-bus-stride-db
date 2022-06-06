@@ -16,7 +16,8 @@ class SiriSnapshot(Base):
     __tablename__ = 'siri_snapshot'
     __table_args__ = (
         {**info("""
-            A SIRI Snapshot which was received from MOT. We get a new snapshot every 1 minute.
+            A SIRI Snapshot which was received from MOT. 
+            We get a new snapshot every 1 minute via [[siri-etl-process-snapshot-new-snapshots-daemon]]
         """)}
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)

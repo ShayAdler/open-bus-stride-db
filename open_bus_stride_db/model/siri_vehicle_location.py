@@ -56,5 +56,8 @@ class SiriVehicleLocation(Base):
     )
     distance_from_siri_ride_stop_meters = sqlalchemy.Column(
         sqlalchemy.Integer,
-        **info("Distance from the nearest [[siri_ride_stop]] according to the GTFS stop location.")
+        **info("""
+            Distance from the nearest [[siri_ride_stop]] according to the GTFS stop location.
+            Populated via [[stride-etl-siri-update-ride-stops-vehicle-locations]].
+        """)
     )
