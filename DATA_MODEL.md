@@ -83,22 +83,22 @@ A unique identifier for this ride as provided by the original MOT GTFS data.
 #### gtfs_ride.first_gtfs_ride_stop_id
 
 The first [gtfs_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride_stop) along this ride. 
-Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
+Populated from [stride-etl-gtfs-update-ride-aggregations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs#stride-etl-siri-storage-backup-cleanup#stride-etl-gtfs-update-ride-aggregations).
 
 #### gtfs_ride.last_gtfs_ride_stop_id
 
 The last [gtfs_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride_stop) along this ride. 
-Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
+Populated from [stride-etl-gtfs-update-ride-aggregations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs#stride-etl-siri-storage-backup-cleanup#stride-etl-gtfs-update-ride-aggregations).
 
 #### gtfs_ride.start_time
 
 The start time of this ride. 
-Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
+Populated from [stride-etl-gtfs-update-ride-aggregations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs#stride-etl-siri-storage-backup-cleanup#stride-etl-gtfs-update-ride-aggregations).
 
 #### gtfs_ride.end_time
 
 The end time of this ride. 
-Populated from `open_bus_stride_etl.gtfs.update_ride_aggregations`.
+Populated from [stride-etl-gtfs-update-ride-aggregations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs#stride-etl-siri-storage-backup-cleanup#stride-etl-gtfs-update-ride-aggregations).
 
 ## gtfs_ride_stop
 
@@ -156,32 +156,32 @@ also be other identifier as provided by the SIRI data.
 #### siri_ride.first_vehicle_location_id
 
 The first [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location) along this ride.
-Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
+Populated by [stride-etl-siri-add-ride-durations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations).
 
 #### siri_ride.last_vehicle_location_id
 
 The last [siri_vehicle_location](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_vehicle_location) along this ride.
-Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
+Populated by [stride-etl-siri-add-ride-durations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations).
 
 #### siri_ride.duration_minutes
 
 The duration of this ride in minutes.
-Populated by `open-bus-stride-etl.siri.add-ride-duration-minutes`.
+Populated by [stride-etl-siri-add-ride-durations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations).
 
 #### siri_ride.journey_gtfs_ride_id
 
 The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on journey_ref.
-Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
+Populated by [stride-etl-siri-update-rides-gtfs](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs).
 
 #### siri_ride.route_gtfs_ride_id
 
 The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on operator_ref, line_ref and scheduled_start_time.
-Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
+Populated by [stride-etl-siri-update-rides-gtfs](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs).
 
 #### siri_ride.gtfs_ride_id
 
 The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on best match from either [journey_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ridejourney_gtfs_ride_id) or [route_gtfs_ride_id](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_rideroute_gtfs_ride_id).
-Populated by `open-bus-stride-etl.siri.update-rides-gtfs`.
+Populated by [stride-etl-siri-update-rides-gtfs](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations#stride-etl-siri-update-rides-gtfs).
 
 ## siri_ride_stop
 
@@ -204,12 +204,13 @@ The order of this stop along the ride, first stop is 0.
 
 #### siri_ride_stop.gtfs_stop_id
 
-The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop).
+The related [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop). Populated via [stride-etl-siri-update-ride-stops-gtfs](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs).
 
 #### siri_ride_stop.nearest_siri_vehicle_location_id
 
 The siri vehicle location from this ride which is nearest to 
 the [gtfs_stop.lon](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stoplon) / [gtfs_stop.lat](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stoplat).
+Populated via [stride-etl-siri-update-ride-stops-vehicle-locations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations).
 
 ## siri_route
 
@@ -279,10 +280,12 @@ The distance from journey start of this vehicle at the recorded time, according 
 #### siri_vehicle_location.distance_from_siri_ride_stop_meters
 
 Distance from the nearest [siri_ride_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#siri_ride_stop) according to the GTFS stop location.
+Populated via [stride-etl-siri-update-ride-stops-vehicle-locations](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon#gtfs-etl#stride-etl-siri-add-ride-durations#stride-etl-siri-update-ride-stops-gtfs#stride-etl-siri-update-ride-stops-vehicle-locations).
 
 ## siri_snapshot
 
-A SIRI Snapshot which was received from MOT. We get a new snapshot every 1 minute.
+A SIRI Snapshot which was received from MOT. 
+We get a new snapshot every 1 minute via [siri-etl-process-snapshot-new-snapshots-daemon](https://raw.githubusercontent.com/hasadna/open-bus-pipelines/main/STRIDE_ETL_PROCESSES.md#siri-requester-daemon#siri-etl-process-snapshot-new-snapshots-daemon)
 
 #### siri_snapshot.id
 
