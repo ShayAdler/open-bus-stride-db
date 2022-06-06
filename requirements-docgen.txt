@@ -1,1 +1,2 @@
 git+https://github.com/fschulze/sqlalchemy_schemadisplay.git@716d47f2e35a60a69cc49e6e4af7aa11ad1ba249
+requests==2.26.0
