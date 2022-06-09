@@ -11,8 +11,13 @@ class GtfsRideStop(Base):
         {**info("""
             A planned stop along a [[gtfs_ride]]. 
             Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
-        """)}
+        """)},
+        sqlalchemy.Index(
+            'idx_gtfs_ride_stop_arrival_time',
+            sqlalchemy.text("date_trunc('day', arrival_time)::date")
+        ),
     )
+
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     gtfs_stop_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'), index=True,

@@ -3,13 +3,18 @@ import sqlalchemy.orm
 from .base import Base, DateTimeWithTimeZone, info
 
 
+
 class GtfsRide(Base):
     __tablename__ = 'gtfs_ride'
     __table_args__ = (
         {**info("""
             A planned ride (AKA trip) along a specified route. 
             Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
-        """)}
+        """)},
+        sqlalchemy.Index(
+            'idx_gtfs_ride_start_time',
+            sqlalchemy.text("date_trunc('day', start_time)::date")
+        ),
     )
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     gtfs_route_id = sqlalchemy.Column(
