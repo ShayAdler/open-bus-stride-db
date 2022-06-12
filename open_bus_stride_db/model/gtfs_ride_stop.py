@@ -8,10 +8,6 @@ from open_bus_stride_db.model.base import DateTimeWithTimeZone, info
 class GtfsRideStop(Base):
     __tablename__ = 'gtfs_ride_stop'
     __table_args__ = (
-        sqlalchemy.Index(
-            'idx_gtfs_ride_stop_arrival_time',
-            sqlalchemy.text("date_trunc('day', arrival_time)::date")
-        ),
         {**info("""
             A planned stop along a [[gtfs_ride]]. 
             Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
@@ -35,7 +31,7 @@ class GtfsRideStop(Base):
         'GtfsRide', back_populates='gtfs_ride_stops',
         foreign_keys=[gtfs_ride_id]
     )
-    arrival_time = sqlalchemy.Column(DateTimeWithTimeZone)
+    arrival_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     departure_time = sqlalchemy.Column(DateTimeWithTimeZone)
     stop_sequence = sqlalchemy.Column(sqlalchemy.Integer)
     pickup_type = sqlalchemy.Column(sqlalchemy.Integer)

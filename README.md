@@ -48,7 +48,7 @@ export SQLALCHEMY_URL=postgresql://postgres:123456@localhost
 
 ### Use
 
-Start a Postgresql DB by running the following from `constru.pipelines` repository:
+Start a Postgresql DB by running the following from `open-bus-pipelines` repository:
 
 ```
 docker-compose up -d stride-db

@@ -7,10 +7,6 @@ from .base import Base, DateTimeWithTimeZone, info
 class GtfsRide(Base):
     __tablename__ = 'gtfs_ride'
     __table_args__ = (
-        sqlalchemy.Index(
-            'idx_gtfs_ride_start_time',
-            sqlalchemy.text("date_trunc('day', start_time)::date")
-        ),
         {**info("""
             A planned ride (AKA trip) along a specified route. 
             Populated daily from the MOT GTFS data by [[gtfs-etl]]. 
@@ -48,7 +44,7 @@ class GtfsRide(Base):
         """)
     )
     start_time = sqlalchemy.Column(
-        DateTimeWithTimeZone,
+        DateTimeWithTimeZone, index=True,
         **info("""
             The start time of this ride. 
             Populated from [[stride-etl-gtfs-update-ride-aggregations]].
