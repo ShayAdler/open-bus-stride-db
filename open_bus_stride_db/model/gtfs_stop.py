@@ -22,8 +22,8 @@ class GtfsStop(Base):
         sqlalchemy.Integer, index=True,
         **info("The GTFS stop code.")
     )
-    lat = sqlalchemy.Column(sqlalchemy.Float)
-    lon = sqlalchemy.Column(sqlalchemy.Float)
+    lat = sqlalchemy.Column(sqlalchemy.Float, index=True)
+    lon = sqlalchemy.Column(sqlalchemy.Float, index=True)
     name = sqlalchemy.Column(sqlalchemy.String)
     city = sqlalchemy.Column(sqlalchemy.String)
     gtfs_ride_stops = sqlalchemy.orm.relationship(

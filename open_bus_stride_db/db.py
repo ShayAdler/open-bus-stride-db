@@ -8,7 +8,8 @@ from sqlalchemy.orm import sessionmaker, Session
 
 engine = create_engine(os.environ.get('SQLALCHEMY_URL', 'postgresql://postgres:123456@localhost'),
                        future=True,
-                       connect_args={"options": "-c timezone=utc"})
+                       connect_args={"options": "-c timezone=utc"},
+                       echo=bool(os.environ.get('SQLALCHEMY_ECHO')))
 _sessionmaker = sessionmaker(bind=engine, future=True, autoflush=False, autocommit=False)
 
 

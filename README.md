@@ -46,6 +46,12 @@ Create a `.env` file with the following contents (don't change anything, it's on
 export SQLALCHEMY_URL=postgresql://postgres:123456@localhost
 ```
 
+Optionally, to have all SQL statements output to the console, add the following env var:
+
+```
+export SQLALCHEMY_ECHO=yes
+```
+
 ### Use
 
 Start a Postgresql DB by running the following from `open-bus-pipelines` repository:
