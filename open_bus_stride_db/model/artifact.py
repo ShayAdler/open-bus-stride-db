@@ -25,3 +25,4 @@ class Artifact(Base):
     error = sqlalchemy.Column(sqlalchemy.String)
     url = sqlalchemy.Column(sqlalchemy.String)
     created_at = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
+    file_size_bytes = sqlalchemy.Column(sqlalchemy.Integer)
