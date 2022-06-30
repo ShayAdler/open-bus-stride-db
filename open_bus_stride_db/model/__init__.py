@@ -1,5 +1,6 @@
 from .base import Base
 
+from .artifact import Artifact, ArtifactStatusEnum
 from .gtfs_route import GtfsRoute
 from .gtfs_stop import GtfsStop
 from .gtfs_stop_mot_id import GtfsStopMotId
