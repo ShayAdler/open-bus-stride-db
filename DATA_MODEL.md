@@ -2,6 +2,24 @@
 
 ![Database Schema Diagram](dbschema.png)
 
+## artifact
+
+Static files from ETL / processing tasks stored in S3.
+
+#### artifact.id
+
+#### artifact.file_prefix
+
+#### artifact.status
+
+#### artifact.metadata_json
+
+#### artifact.error
+
+#### artifact.url
+
+#### artifact.created_at
+
 ## gtfs_route
 
 A planned route. 
