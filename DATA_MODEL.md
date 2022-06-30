@@ -20,6 +20,8 @@ Static files from ETL / processing tasks stored in S3.
 
 #### artifact.created_at
 
+#### artifact.file_size_bytes
+
 ## gtfs_route
 
 A planned route. 
