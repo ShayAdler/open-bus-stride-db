@@ -22,6 +22,29 @@ Static files from ETL / processing tasks stored in S3.
 
 #### artifact.file_size_bytes
 
+## gtfs_data
+
+Record of downloaded GTFS data from MOT per day.
+Task and processing status relating to this day's GTFS data.
+
+#### gtfs_data.id
+
+#### gtfs_data.date
+
+#### gtfs_data.processing_started_at
+
+#### gtfs_data.processing_completed_at
+
+#### gtfs_data.processing_error
+
+#### gtfs_data.processing_success
+
+#### gtfs_data.upload_success
+
+#### gtfs_data.processing_used_stride_date
+
+If the GTFS data was processed using a different date then in the date field, this is the date used.
+
 ## gtfs_route
 
 A planned route. 
