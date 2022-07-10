@@ -31,6 +31,14 @@ Task and processing status relating to this day's GTFS data.
 
 #### gtfs_data.date
 
+#### gtfs_data.download_upload_started_at
+
+#### gtfs_data.download_upload_completed_at
+
+#### gtfs_data.download_upload_error
+
+#### gtfs_data.download_upload_success
+
 #### gtfs_data.processing_started_at
 
 #### gtfs_data.processing_completed_at
@@ -38,8 +46,6 @@ Task and processing status relating to this day's GTFS data.
 #### gtfs_data.processing_error
 
 #### gtfs_data.processing_success
-
-#### gtfs_data.upload_success
 
 #### gtfs_data.processing_used_stride_date
 
