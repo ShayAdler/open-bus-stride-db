@@ -51,10 +51,28 @@ Task and processing status relating to this day's GTFS data.
 
 If the GTFS data was processed using a different date then in the date field, this is the date used.
 
+## gtfs_data_task
+
+Record of processing tasks status relating to GTFS data.
+
+#### gtfs_data_task.id
+
+#### gtfs_data_task.gtfs_data_id
+
+#### gtfs_data_task.task_name
+
+#### gtfs_data_task.started_at
+
+#### gtfs_data_task.completed_at
+
+#### gtfs_data_task.error
+
+#### gtfs_data_task.success
+
 ## gtfs_route
 
 A planned route. 
-Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#gtfs-etl).
+Populated daily from the MOT GTFS data by [[gtfs-etl]].
 
 #### gtfs_route.id
 
@@ -87,7 +105,7 @@ Unique identifier for this route, together with [line_ref](https://github.com/ha
 ## gtfs_stop
 
 A single stop. 
-Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#gtfs-etl).
+Populated daily from the MOT GTFS data by [[gtfs-etl]].
 
 #### gtfs_stop.id
 
@@ -110,7 +128,7 @@ The GTFS stop code.
 ## gtfs_stop_mot_id
 
 Each [gtfs_stop](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_stop) can have multiple MOT identifiers, represented in this table.
-Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#gtfs-etl).
+Populated daily from the MOT GTFS data by [[gtfs-etl]].
 
 #### gtfs_stop_mot_id.id
 
@@ -121,7 +139,7 @@ Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/
 ## gtfs_ride
 
 A planned ride (AKA trip) along a specified route. 
-Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#gtfs-etl).
+Populated daily from the MOT GTFS data by [[gtfs-etl]].
 
 #### gtfs_ride.id
 
@@ -156,7 +174,7 @@ Populated from [stride-etl-gtfs-update-ride-aggregations](https://github.com/has
 ## gtfs_ride_stop
 
 A planned stop along a [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride). 
-Populated daily from the MOT GTFS data by [gtfs-etl](https://github.com/hasadna/open-bus-pipelines/blob/main/STRIDE_ETL_PROCESSES.md#gtfs-etl).
+Populated daily from the MOT GTFS data by [[gtfs-etl]].
 
 #### gtfs_ride_stop.id
 
