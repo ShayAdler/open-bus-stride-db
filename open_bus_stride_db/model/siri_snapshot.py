@@ -6,6 +6,7 @@ import sqlalchemy.orm
 
 
 class SiriSnapshotEtlStatusEnum(enum.Enum):
+    pending = 'pending'
     loading = 'loading'
     loaded = 'loaded'
     error = 'error'
@@ -32,9 +33,15 @@ class SiriSnapshot(Base):
         sqlalchemy.Enum(SiriSnapshotEtlStatusEnum),
         **info("""
             Describes the ETL status of this snapshot, 
-            only snapshots with status "loaded" should be considered ready for usage. 
+            only snapshots with status "loaded" should be considered ready for usage.
+            pending: The snapshot was received from MOT but was not loaded yet.
+            loading: The snapshot is currently being loaded.
+            loaded: The snapshot was successfully loaded.
+            error: An error occured during snapshot loading / processing.
+            deleted: The snapshot was manually deleted to allow reloading.
         """)
     )
+    etl_pending_time = sqlalchemy.Column(DateTimeWithTimeZone)
     etl_start_time = sqlalchemy.Column(DateTimeWithTimeZone, index=True)
     etl_end_time = sqlalchemy.Column(DateTimeWithTimeZone)
     error = sqlalchemy.Column(
