@@ -371,6 +371,13 @@ Uses the following format: year/month/day/hours/minutes (e.g. 2022/03/09/11/08).
 
 Describes the ETL status of this snapshot, 
 only snapshots with status "loaded" should be considered ready for usage.
+pending: The snapshot was received from MOT but was not loaded yet.
+loading: The snapshot is currently being loaded.
+loaded: The snapshot was successfully loaded.
+error: An error occured during snapshot loading / processing.
+deleted: The snapshot was manually deleted to allow reloading.
+
+#### siri_snapshot.etl_pending_time
 
 #### siri_snapshot.etl_start_time
 
