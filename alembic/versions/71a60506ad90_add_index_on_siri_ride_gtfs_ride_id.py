@@ -1,7 +1,7 @@
 """add_index_on_siri_ride_gtfs_ride_id
 
 Revision ID: 71a60506ad90
-Revises: 4cdcf21fa073
+Revises: c0fa93cfbf95
 Create Date: 2022-11-21 18:48:02.929521+00:00
 
 """
@@ -14,7 +14,7 @@ import open_bus_stride_db
 
 # revision identifiers, used by Alembic.
 revision = '71a60506ad90'
-down_revision = '4cdcf21fa073'
+down_revision = 'c0fa93cfbf95'
 branch_labels = None
 depends_on = None
 
