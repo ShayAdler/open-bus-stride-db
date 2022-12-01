@@ -42,7 +42,7 @@ class SiriRideStop(Base):
         primaryjoin='SiriRideStop.id==SiriVehicleLocation.siri_ride_stop_id'
     )
     gtfs_stop_id = sqlalchemy.Column(
-        sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'),
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_stop.id'), index=True,
         **info("The related [[gtfs_stop]]. Populated via [[stride-etl-siri-update-ride-stops-gtfs]].")
     )
     nearest_siri_vehicle_location_id = sqlalchemy.Column(
