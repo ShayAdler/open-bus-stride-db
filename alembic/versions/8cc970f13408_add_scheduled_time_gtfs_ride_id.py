@@ -14,7 +14,7 @@ import open_bus_stride_db
 
 # revision identifiers, used by Alembic.
 revision = '8cc970f13408'
-down_revision = 'baadbcbcd3de'
+down_revision = '167517cbecae'
 branch_labels = None
 depends_on = None
 
