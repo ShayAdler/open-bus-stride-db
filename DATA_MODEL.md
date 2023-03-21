@@ -243,10 +243,15 @@ Populated by [[stride-etl-siri-add-ride-durations]].
 
 #### siri_ride.journey_gtfs_ride_id
 
-The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on journey_ref.
+Deprecated: The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on journey_ref.
 Populated by [[stride-etl-siri-update-rides-gtfs]].
 
 #### siri_ride.route_gtfs_ride_id
+
+Deprecated: The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on operator_ref, line_ref and scheduled_start_time.
+Populated by [[stride-etl-siri-update-rides-gtfs]].
+
+#### siri_ride.scheduled_time_gtfs_ride_id
 
 The related [gtfs_ride](https://github.com/hasadna/open-bus-stride-db/blob/main/DATA_MODEL.md#gtfs_ride) based on operator_ref, line_ref and scheduled_start_time.
 Populated by [[stride-etl-siri-update-rides-gtfs]].
