@@ -88,11 +88,18 @@ class SiriRide(Base):
     journey_gtfs_ride_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'),
         **info("""
-            The related [[gtfs_ride]] based on journey_ref.
+            Deprecated: The related [[gtfs_ride]] based on journey_ref.
             Populated by [[stride-etl-siri-update-rides-gtfs]].
         """)
     )
     route_gtfs_ride_id = sqlalchemy.Column(
+        sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'), index=True,
+        **info("""
+            Deprecated: The related [[gtfs_ride]] based on operator_ref, line_ref and scheduled_start_time.
+            Populated by [[stride-etl-siri-update-rides-gtfs]].
+        """)
+    )
+    scheduled_time_gtfs_ride_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('gtfs_ride.id'), index=True,
         **info("""
             The related [[gtfs_ride]] based on operator_ref, line_ref and scheduled_start_time.
