@@ -46,7 +46,7 @@ class SiriRideStop(Base):
         **info("The related [[gtfs_stop]]. Populated via [[stride-etl-siri-update-ride-stops-gtfs]].")
     )
     nearest_siri_vehicle_location_id = sqlalchemy.Column(
-        sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'), index=True,
+        sqlalchemy.BigInteger, sqlalchemy.ForeignKey('siri_vehicle_location.id'), index=True,
         **info("""
             The siri vehicle location from this ride which is nearest to 
             the [[gtfs_stop.lon]] / [[gtfs_stop.lat]].

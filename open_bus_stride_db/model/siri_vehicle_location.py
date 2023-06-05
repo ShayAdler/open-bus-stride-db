@@ -10,7 +10,7 @@ class SiriVehicleLocation(Base):
             A vehicle location, accurate to within 1 minute, populated in near real time from the SIRI data by [[siri-etl-process-snapshot-new-snapshots-daemon]].
         """)}
     )
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    id = sqlalchemy.Column(sqlalchemy.BigInteger, primary_key=True)
     siri_snapshot_id = sqlalchemy.Column(
         sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_snapshot.id'), index=True,
         **info("The [[siri_snapshot]] which contained this vehicle location.")

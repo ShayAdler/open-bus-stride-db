@@ -60,14 +60,14 @@ class SiriRide(Base):
         DateTimeWithTimeZone, index=True, **info(hide=True)
     )
     first_vehicle_location_id = sqlalchemy.Column(
-        sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
+        sqlalchemy.BigInteger, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
         **info("""
             The first [[siri_vehicle_location]] along this ride.
             Populated by [[stride-etl-siri-add-ride-durations]].
         """)
     )
     last_vehicle_location_id = sqlalchemy.Column(
-        sqlalchemy.Integer, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
+        sqlalchemy.BigInteger, sqlalchemy.ForeignKey('siri_vehicle_location.id'),
         **info("""
             The last [[siri_vehicle_location]] along this ride.
             Populated by [[stride-etl-siri-add-ride-durations]].
