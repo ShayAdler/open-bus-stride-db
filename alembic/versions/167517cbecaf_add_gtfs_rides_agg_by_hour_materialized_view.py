@@ -23,17 +23,12 @@ depends_on = None
 def upgrade():
     op.execute(dedent("""
         create materialized view gtfs_rides_agg_by_hour as
-        select a.id as gtfs_route_id, a.hour as gtfs_route_hour, a.total_rides as num_planned_rides, a.actual_rides as num_actual_rides,
-               gtfs_route.route_short_name, gtfs_route.route_long_name, gtfs_route.agency_name
-        from (
-            select gtfs_route_id as id, date_trunc('hour', start_time) as hour, count(*) as total_rides, count(*) filter (WHERE sr.scheduled_time_gtfs_ride_id is not null) as actual_rides
+            select gtfs_route_id, date_trunc('hour', start_time) as gtfs_route_hour,
+                   count(*) as num_planned_rides,
+                   count(*) filter (WHERE sr.scheduled_time_gtfs_ride_id is not null) as num_actual_rides
             from gtfs_ride
             left outer join siri_ride sr on gtfs_ride.id = sr.scheduled_time_gtfs_ride_id
             group by gtfs_route_id, date_trunc('hour', start_time)
-
-        ) a, gtfs_route
-        where
-           a.id=gtfs_route.id
     """))
     op.execute("create index idx_gtfs_rides_agg_by_hour_gtfs_route_id on gtfs_rides_agg_by_hour (gtfs_route_id)")
     op.execute("create index idx_gtfs_rides_agg_by_hour_gtfs_route_date on gtfs_rides_agg_by_hour (gtfs_route_hour)")
