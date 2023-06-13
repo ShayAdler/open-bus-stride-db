@@ -1,8 +1,8 @@
-"""add gtfs_rides_agg materialized view
+"""add gtfs rides agg by hour materialized view
 
-Revision ID: 167517cbecaf
-Revises: 7f5f797b8554
-Create Date: 2023-02-03 15:23:18.857379+00:00
+Revision ID: eaff3d954883
+Revises: 5859caa1c01d
+Create Date: 2023-06-13 06:40:11.991222+00:00
 
 """
 from textwrap import dedent
@@ -15,10 +15,11 @@ import open_bus_stride_db
 
 
 # revision identifiers, used by Alembic.
-revision = '167517cbecaf'
-down_revision = '7f5f797b8554'
+revision = 'eaff3d954883'
+down_revision = '5859caa1c01d'
 branch_labels = None
 depends_on = None
+
 
 def upgrade():
     op.execute(dedent("""
