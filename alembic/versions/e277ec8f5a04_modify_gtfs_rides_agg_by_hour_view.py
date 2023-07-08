@@ -23,6 +23,7 @@ depends_on = None
 def upgrade():
     op.execute("DROP MATERIALIZED VIEW IF EXISTS gtfs_rides_agg_by_hour")
     op.execute(dedent("""
+        create materialized view gtfs_rides_agg_by_hour as
         select gtfs_route_id, date_trunc('hour', start_time) as gtfs_route_hour,
                    date_trunc('day', start_time) as gtfs_route_date,
                    count(*) as num_planned_rides,
