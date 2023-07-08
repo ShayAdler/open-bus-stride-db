@@ -34,6 +34,7 @@ def upgrade():
     """))
     op.execute("create index idx_gtfs_rides_agg_by_hour_gtfs_route_id on gtfs_rides_agg_by_hour (gtfs_route_id)")
     op.execute("create index idx_gtfs_rides_agg_by_hour_gtfs_route_date on gtfs_rides_agg_by_hour (gtfs_route_hour)")
+    op.execute("REFRESH MATERIALIZED VIEW gtfs_rides_agg_by_hour")
 
 
 def downgrade():
