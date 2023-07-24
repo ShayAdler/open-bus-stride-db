@@ -40,9 +40,12 @@ def upgrade():
     """))
     op.execute("create index idx_gtfs_rides_agg_gtfs_route_id on gtfs_rides_agg (gtfs_route_id)")
     op.execute("create index idx_gtfs_rides_agg_gtfs_route_date on gtfs_rides_agg (gtfs_route_date)")
+    # This unique index allows to refresh the materialized view concurrently (it was created manually)
+    op.execute("create unique index gtfs_rides_agg_uniq_idx on gtfs_rides_agg (gtfs_route_id, gtfs_route_date);")
 
 
 def downgrade():
     op.execute("drop materialized view gtfs_rides_agg")
     op.execute("drop index idx_gtfs_rides_agg_gtfs_route_id")
     op.execute("drop index idx_gtfs_rides_agg_gtfs_route_date")
+    op.execute("drop index gtfs_rides_agg_uniq_idx")
